@@ -73,6 +73,5 @@ def display_list(rows):
         print(f"{row[1]} (ID: {row[0]}, Format: {FORMATS[row[2]]})")
  
 
-# This script generates a random password based on user-defined criteria.
 if __name__ == "__main__":
     main()
