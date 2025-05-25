@@ -14,6 +14,8 @@ def initialize_database(filename):
     dbversion = get_database_version(filename)
     print(f"Current database version: {dbversion}")
 
+    perform_version_migration(filename, dbversion)
+
 
 # Checks to see if a file exists
 def file_exists(filename):
@@ -30,7 +32,7 @@ def create_database(filename):
     """Initialize the database with some sample data."""
     conn = sqlite3.connect(filename)
     conn.execute('''
-    CREATE TABLE IF NOT EXISTS movies
+    CREATE TABLE IF NOT EXISTS movie
     (
           id INTEGER PRIMARY KEY
         , title TEXT
@@ -45,6 +47,26 @@ def create_database(filename):
     # Commit the changes and close the connection
     conn.commit()
     conn.close()
+
+
+# Perform version migration if necessary
+def perform_version_migration(filename, start_version):
+    """Perform version migration if necessary."""
+    if (start_version == '1.01'):
+        conn = sqlite3.connect(filename)
+        cursor = conn.cursor()
+        if start_version == '1.01':
+            print("Migrating from version 1.01 to 1.02...")
+            # Version 1.01 had a table named movies, will be renamed to movie
+            cursor.execute('''
+                ALTER TABLE movies
+                    RENAME TO movie;
+            ''')
+            cursor.execute('''UPDATE dbversion SET version = '1.02' WHERE version = '1.01' ''')
+            conn.commit()
+            print("Migration to version 1.02 completed.")
+        conn.close()
+        start_version = '1.02'
 
 
 # Get the current database version

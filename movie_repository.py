@@ -6,7 +6,7 @@ def add_movie(filename, title, format_choice):
     try:
         with sqlite3.connect(filename) as conn:
             conn.execute(
-                "INSERT INTO movies (title, format) VALUES (?, ?)",
+                "INSERT INTO movie (title, format) VALUES (?, ?)",
                 (title, format_choice)
             )
             conn.commit()
@@ -26,7 +26,7 @@ def list_movies(filename):
     try:
         with sqlite3.connect(filename) as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM movies ORDER BY title")
+            cursor.execute("SELECT * FROM movie ORDER BY title")
             rows = cursor.fetchall()
         return rows
     except sqlite3.Error as e:
@@ -35,5 +35,25 @@ def list_movies(filename):
     except Exception as e:
         print(f"Unexpected error: {e}")
         return []
+    finally:
+        conn.close()
+
+# Add a movie to the database
+def delete_movie(filename, id):
+    """Delete a movie from the database."""
+    try:
+        with sqlite3.connect(filename) as conn:
+            conn.execute(
+                "DELETE FROM movie WHERE id = ?",
+                (id,)
+            )
+            conn.commit()
+        return True
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return False
     finally:
         conn.close()
