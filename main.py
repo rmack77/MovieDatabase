@@ -5,12 +5,6 @@ from export import export_csv
 
 DATABASE_NAME = "movies.db"
 CSV_FILE_NAME = "movies.csv"
-FORMATS = {
-    0: "DVD",
-    1: "Blu-ray",
-    2: "4K",
-    3: "Digital"
-}
 
 def main():
     """Main function to initialize the database and create tables."""
