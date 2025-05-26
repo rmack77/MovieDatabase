@@ -15,7 +15,7 @@ def export_csv(database_file, csv_file):
         cursor = conn.cursor()
 
         # Execute a query to select all data from the first table
-        cursor.execute("SELECT * FROM movie ORDER BY id")
+        cursor.execute("SELECT movie.id, movie.title, format.formatname FROM movie JOIN format ON movie.formatid=format.formatid ORDER BY id")
 
         # Fetch all rows from the executed query
         rows = cursor.fetchall()

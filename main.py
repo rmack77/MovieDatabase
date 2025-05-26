@@ -70,7 +70,7 @@ def start_interface():
 # Function to display the list of movies
 def display_list(rows):
     for row in rows:
-        print(f"{row[1]} (ID: {row[0]}, Format: {FORMATS[row[2]]})")
+        print(f"{row[1]} (ID: {row[0]}, {row[2]})")
  
 
 if __name__ == "__main__":

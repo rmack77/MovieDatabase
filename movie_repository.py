@@ -6,7 +6,7 @@ def add_movie(filename, title, format_choice):
     try:
         with sqlite3.connect(filename) as conn:
             conn.execute(
-                "INSERT INTO movie (title, format) VALUES (?, ?)",
+                "INSERT INTO movie (title, formatid) VALUES (?, ?)",
                 (title, format_choice)
             )
             conn.commit()
@@ -26,7 +26,7 @@ def list_movies(filename):
     try:
         with sqlite3.connect(filename) as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM movie ORDER BY title")
+            cursor.execute("SELECT movie.id, movie.title, format.formatname FROM movie JOIN format ON movie.formatid=format.formatid ORDER BY title")
             rows = cursor.fetchall()
         return rows
     except sqlite3.Error as e:

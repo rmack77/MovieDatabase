@@ -1,9 +1,10 @@
-id,title,format
-2,Dunkirk,1
-3,Color Out of Space,2
-4,No Country for Old Men,3
-5,There Will Be Blood,0
-6,Due Date,1
-7,Little Miss Sunshine,1
-8,Sound City,1
-9,Inception,1
+id,title,formatname
+2,Dunkirk,Blu-ray
+3,Color Out of Space,4K
+4,No Country for Old Men,Digital
+5,There Will Be Blood,DVD
+6,Due Date,Blu-ray
+7,Little Miss Sunshine,Blu-ray
+8,Sound City,Blu-ray
+9,Inception,Blu-ray
+10,2001: A Space Oddesey,Blu-ray
