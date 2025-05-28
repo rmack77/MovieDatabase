@@ -38,7 +38,7 @@ def list_movies(filename):
     finally:
         conn.close()
 
-# Add a movie to the database
+# Delete a movie from the database
 def delete_movie(filename, id):
     """Delete a movie from the database."""
     try:
