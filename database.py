@@ -37,14 +37,14 @@ def create_database(filename):
     conn.execute('''
         CREATE TABLE IF NOT EXISTS dbversion
         (
-            version TEXT
+              version TEXT
         )
     ''')
     conn.execute('''INSERT INTO dbversion (version) VALUES ('1.03')''')
     conn.execute('''
         CREATE TABLE IF NOT EXISTS format
         (
-            formatid INTEGER
+              formatid INTEGER
             , formatname TEXT
         )
     ''')
